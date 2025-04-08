@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abderrahim Azeroual - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2A2A2A;
+            --secondary-color: #0077b5;
+            --accent-color: #00a0dc;
+            --text-color: #444;
+            --background-light: #f9f9f9;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), #404040);
+            color: white;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 100px;
+        }
+
+        .header-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .sign-in-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-speed);
+        }
+
+        .sign-in-btn:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: -100px auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: 5px solid white;
+            background: white;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .visible {
+            animation: fadeInUp 1s forwards;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            transition: var(--transition-speed);
+        }
+
+        h2:hover::after {
+            width: 100px;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--secondary-color);
+        }
+
+        .event {
+            padding: 25px;
+            margin: 30px 0 30px 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: var(--transition-speed);
+            position: relative;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--secondary-color);
+        }
+
+        .event:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .skills li {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: var(--transition-speed);
+            cursor: default;
+        }
+
+        .skills li:hover {
+            transform: translateY(-3px);
+            background: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,119,181,0.3);
+        }
+
+        .contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.5rem;
+            transition: var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            padding: 2rem;
+        }
+
+        .project {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-color);
+            transform: scaleX(0);
+            transition: var(--transition-speed);
+            transform-origin: left;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .project:hover::before {
+            transform: scaleX(1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem;
+            }
+
+            .profile-container {
+                width: 160px;
+                height: 160px;
+                margin-top: -80px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .event {
+                margin-left: 20px;
+            }
+
+            .contact a {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .projects-grid {
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Abderrahim Azeroual</h1>
+            <p>Étudiant en Ingénierie Informatique et Data Science</p>
+        </div>
+        <a href="signIn.html">
+            <button class="sign-in-btn">Sign In</button>
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="profile-container">
+            <img src="MonImg.JPG" alt="Photo de profil" class="profile-img">
+        </div>
+
+        <section class="about">
+            <h2>À propos</h2>
+            <p>Étudiant en ingénierie informatique et data science, passionné par le développement web/mobile et les systèmes intelligents.</p>
+        </section>
+
+        <section class="journey">
+            <h2>Parcours</h2>
+            <div class="timeline">
+                <div class="event">
+                    <h3>2022</h3>
+                    <p>Baccalauréat en Sciences et Technologies Électriques</p>
+                </div>
+                <div class="event">
+                    <h3>2022-2024</h3>
+                    <p>Classes Préparatoires à l'ENSA Khouribga</p>
+                </div>
+                <div class="event">
+                    <h3>2024-Présent</h3>
+                    <p>Étudiant en Ingénierie Informatique et Data Science</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>Compétences</h2>
+            <ul>
+                <li>Python</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>MySQL</li>
+                <li>C</li>
+                <li>Développement Web</li>
+                <li>Base de données</li>
+            </ul>
+        </section>
+
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>
+                <a href="mailto:abderahimazeroual0003@gmail.com">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://www.linkedin.com/in/abderrahim-azeroual-682149279/" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </p>
+        </section>
+
+        <section class="projects">
+            <h2>Projets</h2>
+            <div class="projects-grid">
+                <div class="project">
+                    <h3>Gestion de laboratoire médical</h3>
+                    <p>Système complet de gestion de patients, analyses et résultats.</p>
+                </div>
+                <div class="project">
+                    <h3>Gestion d'aéroport : </h3>
+                    <p>Plateforme de gestion des opérations aéroportuaires.</p>
+                </div>
+                <div class="project">
+                    <h3>Traitement d'image</h3>
+                    <p>Application de filtrage et reconnaissance d'images.</p>
+                </div>
+                <div class="project">
+                    <h3>Site web recyclage</h3>
+                    <p>Plateforme pour entreprise de recyclage.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Animation au défilement
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
