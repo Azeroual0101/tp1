@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Moderne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3436;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+
+        input:hover {
+            border-color: #a8a5e6;
+        }
+
+        button[type="submit"] {
+            background: #6c5ce7;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background: #5b4bc4;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            form {
+                padding: 25px;
+            }
+            
+            input {
+                font-size: 14px;
+            }
+            
+            button[type="submit"] {
+                padding: 12px 20px;
+            }
+        }
+
+        /* Animation au focus */
+        @keyframes inputHighlighter {
+            from { background: #6c5ce7; }
+            to   { width: 0; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <form action="./manip.php" method="POST">
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="number">Téléphone :</label>
+            <input type="tel" id="number" name="number" placeholder="Numéro de téléphone" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" placeholder="adresse@email.com" required>
+        </div>
+        
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
